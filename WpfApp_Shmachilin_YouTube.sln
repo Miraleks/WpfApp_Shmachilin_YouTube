@@ -5,6 +5,10 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp_Shmachilin_YouTube", "WpfApp_Shmachilin_YouTube\WpfApp_Shmachilin_YouTube.csproj", "{3E71F871-7DCC-4EAD-8306-C60125435324}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E9B0EBA9-3EC5-4925-A003-11C37D6D6133}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CV19Console", "Tests\CV19Console\CV19Console.csproj", "{AC8FCA7E-ECD3-460A-99F0-EF90775D0EDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{3E71F871-7DCC-4EAD-8306-C60125435324}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E71F871-7DCC-4EAD-8306-C60125435324}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E71F871-7DCC-4EAD-8306-C60125435324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC8FCA7E-ECD3-460A-99F0-EF90775D0EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC8FCA7E-ECD3-460A-99F0-EF90775D0EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC8FCA7E-ECD3-460A-99F0-EF90775D0EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC8FCA7E-ECD3-460A-99F0-EF90775D0EDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AC8FCA7E-ECD3-460A-99F0-EF90775D0EDD} = {E9B0EBA9-3EC5-4925-A003-11C37D6D6133}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {630D8888-6F42-45D0-BF62-2DF532902A9F}
