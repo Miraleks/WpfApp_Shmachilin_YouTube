@@ -24,5 +24,10 @@ namespace WpfApp_Shmachilin_YouTube
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
