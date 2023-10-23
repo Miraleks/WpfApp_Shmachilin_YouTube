@@ -29,5 +29,10 @@ namespace WpfApp_Shmachilin_YouTube
         {
 
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
