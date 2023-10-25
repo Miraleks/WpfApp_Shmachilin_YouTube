@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using WpfApp_Shmachilin_YouTube.Infrastructure.Commands;
 using WpfApp_Shmachilin_YouTube.ViewModels.Base;
 
 namespace WpfApp_Shmachilin_YouTube.ViewModels
@@ -14,7 +17,7 @@ namespace WpfApp_Shmachilin_YouTube.ViewModels
 
         /// <summary>Заголовок окна</summary>
 
-        public string Title 
+        public string Title
         {
             get => _Title;
             //set
@@ -32,13 +35,39 @@ namespace WpfApp_Shmachilin_YouTube.ViewModels
 
         private string _Status = "Ready";
 
-        public string Status 
+        public string Status
         {
             get => _Status;
             set => Set(ref _Status, value);
         }
 
         #endregion
+
+        #region Команды
+
+        #region CloseAplicationCommand
+        public ICommand CloseAplicationCommand { get; }
+
+        private bool CanCloseAplicationCommandExecute(object p) => true;
+
+        private void OnCloseAplicationCommandExecuted(object p)
+        {
+            Application.Current.Shutdown();
+        } 
+        #endregion
+
+
+        #endregion
+
+        public MainWindowViewModel() 
+        {
+            #region Команды
+
+            CloseAplicationCommand = new LambdaCommand(OnCloseAplicationCommandExecuted, CanCloseAplicationCommandExecute);
+
+            #endregion
+
+        }
 
     }
 }
