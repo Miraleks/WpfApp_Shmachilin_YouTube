@@ -44,7 +44,12 @@
                                Fill="Blue" Stroke="Red" StrokeThickness="3" 
                                RadiusX="5" RadiusY="7"/>
                     <Ellipse Grid.Column="1" Grid.Row="0"
-                             Fill="Red" Stroke="Blue" StrokeThickness="3"/>
+                             Fill="Red" Stroke="Blue" StrokeThickness="3">
+                        <Ellipse.InputBindings>
+                            <MouseBinding Command="{Binding CloseAplicationCommand}" MouseAction="LeftDoubleClick"/>
+                        </Ellipse.InputBindings>
+                    </Ellipse>
+                        
                     <GridSplitter Grid.Column="0" Grid.RowSpan="2" 
                                   HorizontalAlignment="Right"
                                   Width="4"/>
