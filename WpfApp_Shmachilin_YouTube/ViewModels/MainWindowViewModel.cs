@@ -28,5 +28,17 @@ namespace WpfApp_Shmachilin_YouTube.ViewModels
         }
         #endregion
 
+        #region Status : string - Статус программы
+
+        private string _Status = "Ready";
+
+        public string Status 
+        {
+            get => _Status;
+            set => Set(ref _Status, value);
+        }
+
+        #endregion
+
     }
 }
