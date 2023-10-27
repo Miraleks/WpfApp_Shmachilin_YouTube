@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 
 namespace CV19Console
 {
@@ -12,32 +8,53 @@ namespace CV19Console
 
         private static async Task<Stream> GetDataStream()
         {
-            var client = new HttpClient();
-            var responce = await client.GetAsync(data_url, HttpCompletionOption.ResponseHeadersRead);
-            return await responce.Content.ReadAsStreamAsync();
+            var client = new HttpClient(); // создаем подключение 
+            var responce = await client.GetAsync(data_url, HttpCompletionOption.ResponseHeadersRead); // получаем с сервера только заголовки ответа
+            return await responce.Content.ReadAsStreamAsync(); // возвращаем заголовки как поток
         }
 
-        private static async IEnumerable<string> GetDataLines()
+        private static IEnumerable<string> GetDataLines()
         {
-            await using var data_stream = await GetDataStream();
-            using var data_reader = new StreamReader(data_stream);
+            /// 
+            /// Данная функция позволяет читать не всю информацию, а только нужные блоки. В случае необходимости, чтение потока можно прервать
+            /// 
+
+            using var data_stream = GetDataStream().Result; // отправляем запрос к серверу с помощью функции подключения
+            using var data_reader = new StreamReader(data_stream); // читаем данные из потока
 
             while (!data_reader.EndOfStream)
             {
-                var line = await data_reader.ReadLineAsync();
-                if (string.IsNullOrWhiteSpace(line)) continue;
+                var line = data_reader.ReadLine(); //считываем строку из потока
+                if (string.IsNullOrWhiteSpace(line)) continue;  // проверяем на пустое содержимое
+                yield return line; // возвращаем строку как результат, возвращаем генератором
             }
         }
+
+        private static DateTime[] GetDates() => GetDataLines()
+            .First()
+            .Split(',')
+            .Skip(4)
+            .Select(s => DateTime.Parse(s, CultureInfo.InvariantCulture))
+            .ToArray();
+
 
         static void Main(string[] args)
         {
             //WebClient client = new WebClient()
 
-            var client = new HttpClient();
+            //var client = new HttpClient();
 
-            var responce = client.GetAsync(data_url).Result;
+            //var responce = client.GetAsync(data_url).Result;
+            //var csv_str = responce.Content.ReadAsStringAsync().Result;
 
-            var csv_str = responce.Content.ReadAsStringAsync().Result;
+            //foreach (var data_line in GetDataLines())
+            //{
+            //    Console.WriteLine(data_line);
+            //}
+
+            var dates = GetDates();
+
+            Console.WriteLine(string.Join("\r\n", dates));
 
         }
     }
