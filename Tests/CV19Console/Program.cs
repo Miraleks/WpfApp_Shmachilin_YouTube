@@ -74,7 +74,8 @@ namespace CV19Console
 
             //Console.WriteLine(string.Join("\r\n", dates));
 
-            var ukraine_data = GetData().First(v => v.Country.Equals("Ukraine", StringComparison.OrdinalIgnoreCase));
+            var ukraine_data = GetData()
+                .First(v => v.Country.Equals("Ukraine", StringComparison.OrdinalIgnoreCase));
 
             Console.WriteLine(string.Join("\r\n", GetDates().Zip(ukraine_data.Counts, (date, count) => $"{date:d} - {count}")));
 
