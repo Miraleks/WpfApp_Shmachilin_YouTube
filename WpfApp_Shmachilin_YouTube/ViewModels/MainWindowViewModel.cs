@@ -84,12 +84,12 @@ namespace WpfApp_Shmachilin_YouTube.ViewModels
 
             var data_points = new List<DataPoint>((int)(360 / 0.1));
 
-            for (var x = 0d; x <= 360; x++) 
+            for (var x = 0d; x <= 360; x += 0.1) 
             {
                 const double TO_RAD = Math.PI / 180;
                 var y = Math.Sin(x * TO_RAD);
 
-
+                data_points.Add(new DataPoint { XValue = x, YValue = y });
             }
 
             TestDataPoints = data_points;
